@@ -1,0 +1,6 @@
+<h1>Welcome! Which room will you be in? </h1>
+<%= form_with url:'/index' do |form| %>
+	<%= form.text_field :player_id %>
+	<%= form.text_field :num_players %>
+	<%= form.submit %>
+<% end %>

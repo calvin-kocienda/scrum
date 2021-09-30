@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  result: MyString
+  rating: MyString
+  cardtype: MyString
+
+two:
+  title: MyString
+  result: MyString
+  rating: MyString
+  cardtype: MyString

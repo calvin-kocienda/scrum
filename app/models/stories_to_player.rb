@@ -1,0 +1,2 @@
+class StoriesToPlayer < ApplicationRecord
+end

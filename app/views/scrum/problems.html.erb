@@ -1,0 +1,23 @@
+<h1>Current Problems:</h1>
+
+
+<table>
+<tr>
+
+<th>Title</th>
+<th>Attached to Story:</th>
+
+</tr>
+
+
+<% @problems.each do |story| %>
+
+
+  <tr>
+    <td><%= story.title %></td>
+	<td><%= @stories_to_player.where(storyid: story.id).first.work %></td>
+	<td><%= button_to "Apply Work", "/story/#{story.id}", params:{roll_dice: true}%></td>
+  <% end %>
+
+</table>
+

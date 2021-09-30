@@ -1,0 +1,2 @@
+class ProblemsToPlayer < ApplicationRecord
+end

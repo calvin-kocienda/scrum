@@ -1,0 +1,2 @@
+class ExtraDice < ApplicationRecord
+end

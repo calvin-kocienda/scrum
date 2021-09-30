@@ -1,0 +1,65 @@
+<h1>Welcome to the Scrum Game!</h1>
+<h1>You are in room <%= session[:player_id] %></h1>
+<h1>Round Number: <%= session[:round_num] %></h1>
+<h1>Turn Number: <%= session[:turn_num] %></h1>
+
+
+<table>
+<tr>
+
+<th>Title</th>
+<th>Work</th>
+<th></th>
+<th>Problems On Story:</th>
+
+
+</tr>
+
+<%= @number %>
+
+<% @stories.each do |story| %>
+
+
+  <tr>
+    <td><%= story.title %></td>
+	<% if @stories_to_player.where(storyid: story.id).first.work > 0 %>
+	<td><%= @stories_to_player.where(storyid: story.id).first.work %></td>
+	<td><%= button_to "Apply Work", "/story/#{story.id}", params:{roll_dice: true}%></td>
+	<% else %>
+	<td>This story is complete!</td>
+	<% end %>
+	<% if @problems_to_player.where(storyid: story.id).size != 0 %>
+	<td><%= @problems_to_player.where(storyid: story.id).distinct.pluck(:realid) %></td>
+	<% end %>
+	
+  </tr>
+<% end %>
+
+</table>
+
+<table>
+<tr>
+<th>Solutions Collected:</th>
+<th>Applies To:</th>
+<th>Apply To Problem Number:</th>
+</tr>
+
+<%= form_with url:'/index' do |form| %>
+
+
+<% @solutions_to_player.each do |solution| %>
+	<tr>
+		<td><%= ScrumCard.find(solution.solutionid).title %></td>
+		<td><%= ScrumCard.find(solution.solutionid).rating %></td>
+		<% unless ScrumCard.find(solution.solutionid).rating == "[N/A]" %>
+		<td><%= form.text_field :apply_solution_to, multiple: true %></td>
+		<% end %>
+		<%= form.hidden_field :solution_used, value: solution.id, multiple: true %>
+		<td><%= form.submit "Apply"%></td>
+	</tr>
+<% end %>
+<% end %>
+</table>
+<br/>
+<br/>
+<%= flash[:notice] %>

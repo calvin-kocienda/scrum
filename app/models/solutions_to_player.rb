@@ -1,0 +1,2 @@
+class SolutionsToPlayer < ApplicationRecord
+end

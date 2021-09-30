@@ -1,0 +1,17 @@
+<div style="position:absolute; top:50%; left:50%; margin: -200px 0 0 -200px; border:8px groove;">
+<h1>Current Story: <%= @story.title %> </h1>
+<h1>Dice Roll: <%= @dice_roll %></h1>
+<h1>Event Card Type: <%= @event_card.cardtype %></h1>
+<h1>Event Card Drawn: <%= @event_card.title %></h1>
+<h1>Description: <%= @event_card.result %></h1>
+<h1>Card_ID: <%= @card_id %></h1>
+<h1>Total Work Applied: <%= @work_after %></h1>
+<h1>Events: <%= @events.distinct.pluck(:storyid).sort %></h1>
+
+<% if @display_roll_again_button == true %>
+<%= button_to "Draw Again", "/story/#{params[:storyid]}", params:{roll_dice: false} %>
+<% end %>
+
+<br/>
+<%= button_to "Back", "/index" %>
+</div>

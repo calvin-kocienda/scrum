@@ -1,0 +1,23 @@
+<h1>Sprint Over!</h1>
+<h3>Sprint Number: <%= session[:round_num] - 1 %></h3>
+<br/>
+<br/>
+<h3>Progress So Far:</h3>
+<table>
+<tr>
+
+<th>Title</th>
+<th>Work</th>
+
+</tr>
+
+<%= @number %>
+
+<% @stories.each do |story| %>
+  <tr>
+    <td><%= story.title %></td>
+	<td><%= @stories_to_player.where(storyid: story.id).first.work %></td>
+  <% end %>
+
+</table>
+<%= button_to "Start Next Round", "/index"%>

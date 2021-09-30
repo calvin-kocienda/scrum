@@ -1,0 +1,23 @@
+<h1>Game Over!</h1>
+<br/>
+<br/>
+<h3>Progress This Game:</h3>
+<table>
+<tr>
+
+<th>Title</th>
+<th>Work</th>
+
+</tr>
+
+<%= @number %>
+
+<% @stories.each do |story| %>
+  <tr>
+    <td><%= story.title %></td>
+	<td><%= @stories_to_player.where(storyid: story.id).first.work %></td>
+  <% end %>
+
+</table>
+
+<%= button_to "Play Again", "/index", params:{reset: true}%>
